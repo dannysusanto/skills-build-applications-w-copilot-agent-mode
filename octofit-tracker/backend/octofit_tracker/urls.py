@@ -5,14 +5,14 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'teams', views.TeamViewSet)
-router.register(r'activities', views.ActivityViewSet)
-router.register(r'leaderboard', views.LeaderboardViewSet)
-router.register(r'workouts', views.WorkoutViewSet)
+router.register(r'api/users', views.UserViewSet)
+router.register(r'api/teams', views.TeamViewSet)
+router.register(r'api/activities', views.ActivityViewSet)
+router.register(r'api/leaderboard', views.LeaderboardViewSet)
+router.register(r'api/workouts', views.WorkoutViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.api_root),
+    path('api/', views.api_root),
     path('', include(router.urls)),
 ]
