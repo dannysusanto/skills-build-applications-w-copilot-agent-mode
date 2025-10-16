@@ -27,9 +27,14 @@ DEBUG = True
 
 import os
 
-# Allow localhost and GitHub Codespace URL
+# Codespace configuration
 CODESPACE_NAME = os.getenv('CODESPACE_NAME', '')
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', f'{CODESPACE_NAME}-8000.app.github.dev'] if CODESPACE_NAME else ['*']
+CODESPACE_URL = f'https://{CODESPACE_NAME}-8000.app.github.dev' if CODESPACE_NAME else None
+
+# Allow localhost and GitHub Codespace URL
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+if CODESPACE_NAME:
+    ALLOWED_HOSTS.append(f'{CODESPACE_NAME}-8000.app.github.dev')
 
 
 # Application definition
