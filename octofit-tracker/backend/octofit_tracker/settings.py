@@ -36,6 +36,17 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 if CODESPACE_NAME:
     ALLOWED_HOSTS.append(f'{CODESPACE_NAME}-8000.app.github.dev')
 
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'URL_FORMAT_OVERRIDE': None,
+}
+
+if CODESPACE_URL:
+    USE_X_FORWARDED_HOST = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    CSRF_TRUSTED_ORIGINS = [CODESPACE_URL]
+
 
 # Application definition
 
