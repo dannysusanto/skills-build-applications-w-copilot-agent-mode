@@ -138,11 +138,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# CORS settings
+# CORS and CSRF settings
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ['*']
 CORS_ALLOW_METHODS = ['*']
+
+# Handle HTTPS in Codespace
+CSRF_TRUSTED_ORIGINS = [f'https://{CODESPACE_NAME}-8000.app.github.dev'] if CODESPACE_NAME else []
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
